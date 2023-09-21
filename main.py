@@ -2,12 +2,13 @@ import random
 import json
 import time
 
-debug = True
+debug = False
 players_json_path = "players.json"
 
 
 def main():
     global debug, players_json_path
+    clean_terminal()
     punderline("Welcome to the Fishing Game!").blue()
 
     """
@@ -20,7 +21,7 @@ def main():
             try:
                 player_name = str(player_name).upper()
             except:
-                print(f"Invalid Input")
+                print("Invalid Input")
                 continue
             break
     else:
@@ -35,17 +36,17 @@ def main():
     try:
         if debug == False:
             value = data[variable_to_check]
-            print(f"The player '{variable_to_check}' already exists.")
-            print(f"Now loading player '{variable_to_check}'.")
+            print("The player '{variable_to_check}' already exists.")
+            pprint("Now loading player '{variable_to_check}'.").black()
             time.sleep(1.5)
         else:
             value = data[variable_to_check]
-            print(f"Loaded game in debug mode")
+            print("Loaded game in debug mode")
     except KeyError:
-        print(f"The player '{variable_to_check}' does not exist.")
+        print("The player '{variable_to_check}' does not exist.")
         if debug == False:
             time.sleep(0.5)
-        print(f"The player '{variable_to_check}' will now be created.")
+        pprint("The player will now be created.").black()
         if debug == False:
             time.sleep(1.2)
         create_new_player(variable_to_check)
@@ -55,11 +56,11 @@ def main():
     """
 
     while True:
+        """
+        __________At Home________
+        """
         if debug == False:
-            print("\nYou are at home. What do you want to do?:")
-            print("1. Go on a fishing trip.")
-            print("2. Go shopping.")
-            print("3. Go to bed (Exit the game).")
+            pprint("\nYou are at home. What do you want to do?:\n1. Go on a fishing trip.\n2. Go shopping.\n3. Go to bed (Exit the game)").yellow()
         else:
             print("1. Fishing, 2. Shoppping, 3. exit")
 
@@ -72,25 +73,34 @@ def main():
                 # print("player inventory: ", data[player_name]["Possessions"]["Inventory"])
 
         home_choice = input("\nChoose an option (1/2/3): ")
+        """
+        __________Home Choices________
+        """
         if home_choice == "1":
+            print("You are driving to the lake.")
             while True:
+                """
+                ______At the lake____
+                """
                 if debug == False:
-                    print("\nYou are on a fishing trip\nOptions:")
-                    print("1. Cast the rod")
-                    print("2. Go home")
+                    pprint(
+                        "\nYou are on a fishing trip\nOptions:\n1. Cast the rod\n2. Go home").yellow()
                 else:
                     print("\nOptions: 1. Cast the rod, 2. Go home")
 
                 trip_choice = input("\nChoose an option (1/2): ")
 
                 if trip_choice == "1":
-                    go_fishing(player_name)
+                    cast_rod(player_name)
                 elif trip_choice == "2":
                     print("You are going back home.")
                     break
                 else:
                     print("Invalid choice. Please select 1 or 2.")
         if home_choice == "2":
+            """
+                ______Shopping____
+            """
             go_shopping(player_name)
             time.sleep(2)
             continue
@@ -194,7 +204,7 @@ __________________________________Choices Functions_____________________________
 """
 
 
-def go_fishing(player_name):
+def cast_rod(player_name):
     print(f"\n{player_name}, you are now fishing...")
 
     if debug == False:
