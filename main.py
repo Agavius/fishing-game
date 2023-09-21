@@ -110,7 +110,6 @@ __________________________________Json Functions________________________________
 def load_players_data():
     with open(players_json_path, 'r') as json_file:
         players_data = json.load(json_file)
-
     return players_data
 
 
@@ -126,7 +125,6 @@ def save_new_player(player_name, players_data):
                       }
         players_data.update(new_player)
         json.dump(players_data, json_file, indent=4)
-
     return
 
 
@@ -134,6 +132,7 @@ def dump_json(players_data):
     players_data = players_data
     with open(players_json_path, 'w') as json_file:
         json.dump(players_data, json_file, indent=4)
+    return
 
 
 """
@@ -145,7 +144,6 @@ def create_new_player(player_name):
     player_name = player_name
     players_data = load_players_data()
     save_new_player(player_name, players_data)
-
     return
 
 
