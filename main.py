@@ -37,7 +37,7 @@ def main():
         if debug == False:
             value = data[variable_to_check]
             print("The player '{variable_to_check}' already exists.")
-            pprint("Now loading player '{variable_to_check}'.").black()
+            pprint("Now loading player check}'.").black()
             time.sleep(1.5)
         else:
             value = data[variable_to_check]
