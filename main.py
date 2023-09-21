@@ -78,7 +78,7 @@ def main():
         if home_choice == "1":
             while True:
                 if debug == False:
-                    print("\nYou are driving on a fishing trip\nOptions:")
+                    print("\nYou are on a fishing trip\nOptions:")
                     print("1. Cast the rod")
                     print("2. Go home")
                 else:
