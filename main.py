@@ -8,8 +8,6 @@ players_json_path = "players.json"
 
 def main():
     global debug, players_json_path
-    pprint("Welcome to the Fishing Game!").red()
-    pbold("Welcome to the Fishing Game!").black()
     punderline("Welcome to the Fishing Game!").blue()
 
     """
@@ -157,7 +155,7 @@ class pprint:
         self.text = "m" + self.text + "\033[0m"
 
     def black(self):
-        print("\033[0;30" + self.text)
+        print("\033[30" + self.text)
 
     def red(self):
         print("\033[31" + self.text)
@@ -176,12 +174,6 @@ class pprint:
 
     def cyan(self):
         print("\033[36" + self.text)
-
-
-class pbold(pprint):
-    def __init__(self, text):
-        self.text = text
-        self.text = ";1m" + self.text + "\033[0m"
 
 
 class punderline(pprint):
