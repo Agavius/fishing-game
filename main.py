@@ -2,13 +2,15 @@ import random
 import json
 import time
 
-debug = False
+debug = True
 players_json_path = "players.json"
 
 
 def main():
     global debug, players_json_path
-    print("Welcome to the Fishing Game!")
+    pprint("Welcome to the Fishing Game!").red()
+    pbold("Welcome to the Fishing Game!").black()
+    punderline("Welcome to the Fishing Game!").blue()
 
     """
     ______________________________________________________________________________________________________________________
@@ -18,10 +20,6 @@ def main():
         while True:
             player_name = input("Enter your name: ")
             try:
-                if player_name == "Debug":
-                    print(f"Debug Mode is now on")
-                    debug = True
-                    break
                 player_name = str(player_name).upper()
             except:
                 print(f"Invalid Input")
@@ -43,6 +41,7 @@ def main():
             print(f"Now loading player '{variable_to_check}'.")
             time.sleep(1.5)
         else:
+            value = data[variable_to_check]
             print(f"Loaded game in debug mode")
     except KeyError:
         print(f"The player '{variable_to_check}' does not exist.")
@@ -145,6 +144,50 @@ def create_new_player(player_name):
     players_data = load_players_data()
     save_new_player(player_name, players_data)
     return
+
+
+"""
+__________________________________Terminal Functions_______________________________________________________________
+"""
+
+
+class pprint:
+    def __init__(self, text):
+        self.text = text
+        self.text = "m" + self.text + "\033[0m"
+
+    def black(self):
+        print("\033[0;30" + self.text)
+
+    def red(self):
+        print("\033[31" + self.text)
+
+    def green(self):
+        print("\033[32" + self.text)
+
+    def yellow(self):
+        print("\033[33" + self.text)
+
+    def blue(self):
+        print("\033[34" + self.text)
+
+    def magenta(self):
+        print("\033[35" + self.text)
+
+    def cyan(self):
+        print("\033[36" + self.text)
+
+
+class pbold(pprint):
+    def __init__(self, text):
+        self.text = text
+        self.text = ";1m" + self.text + "\033[0m"
+
+
+class punderline(pprint):
+    def __init__(self, text):
+        self.text = text
+        self.text = ";4m" + self.text + "\033[0m"
 
 
 """
