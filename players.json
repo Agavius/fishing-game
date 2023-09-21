@@ -1,1 +1,62 @@
-{"ASD": {"Stats": {"Level": 0, "XP": 0, "Strength": 1, "Stamina": 1, "Luck": 100}, "Possessions": {"Moneys": 0, "Inventory": ["catfish"]}, "Home": {}, "Highscores": {"Biggest fish:": 0, "Most valuable fish": 0}}}
+{
+    "ASD": {
+        "Stats": {
+            "Level": 0,
+            "XP": 0,
+            "Strength": 1,
+            "Stamina": 1,
+            "Luck": 100
+        },
+        "Possessions": {
+            "Moneys": 0,
+            "Inventory": [
+                "catfish"
+            ]
+        },
+        "Home": {},
+        "Highscores": {
+            "Biggest fish:": 0,
+            "Most valuable fish": 0
+        }
+    },
+    "JIM": {
+        "Stats": {
+            "Level": 0,
+            "XP": 0,
+            "Strength": 1,
+            "Stamina": 1,
+            "Luck": 100
+        },
+        "Possessions": {
+            "Moneys": 0,
+            "Inventory": [
+                "catfish"
+            ]
+        },
+        "Home": {},
+        "Highscores": {
+            "Biggest fish:": 0,
+            "Most valuable fish": 0
+        }
+    },
+    "UDO": {
+        "Stats": {
+            "Level": 0,
+            "XP": 0,
+            "Strength": 1,
+            "Stamina": 1,
+            "Luck": 100
+        },
+        "Possessions": {
+            "Moneys": 0,
+            "Inventory": [
+                "trout"
+            ]
+        },
+        "Home": {},
+        "Highscores": {
+            "Biggest fish:": 0,
+            "Most valuable fish": 0
+        }
+    }
+}
