@@ -97,6 +97,9 @@ def main():
         if home_choice == "3":
             print(f"You are going to bed. See you soon!")
             break
+        if home_choice == "clean":
+            clean_terminal()
+            continue
 
 
 """
