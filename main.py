@@ -5,11 +5,23 @@ import time
 debug = False
 players_json_path = "players.json"
 
-
 def main():
     global debug, players_json_path
     clean_terminal()
-    punderline("Welcome to the Fishing Game!").blue()
+    pprint(r"""
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~__        __   _                            _          _   _          ~
+~\ \      / /__| | ___ ___  _ __ ___   ___  | |_ ___   | |_| |__   ___ ~
+~ \ \ /\ / / _ \ |/ __/ _ \| '_ ` _ \ / _ \ | __/ _ \  | __| '_ \ / _ \~
+~  \ V  V /  __/ | (_| (_) | | | | | |  __/ | || (_) | | |_| | | |  __/~
+~ __\_/\_/ \___|_|\___\___/|_| |_| |_|\___|  \__\___/   \__|_| |_|\___|~
+~|  ___(_)___| |__ (_)_ __   __ _   / ___| __ _ _ __ ___   ___| |      ~
+~| |_  | / __| '_ \| | '_ \ / _` | | |  _ / _` | '_ ` _ \ / _ \ |      ~
+~|  _| | \__ \ | | | | | | | (_| | | |_| | (_| | | | | | |  __/_|      ~
+~|_|   |_|___/_| |_|_|_| |_|\__, |  \____|\__,_|_| |_| |_|\___(_)      ~
+~                           |___/                                      ~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+""").blue()
 
     """
     ___________________________________________________Character loading__________________________________________________________
@@ -36,14 +48,14 @@ def main():
     try:
         if debug == False:
             value = data[variable_to_check]
-            print("The player '{variable_to_check}' already exists.")
+            pprint(f"The player '{variable_to_check}' already exists.").black()
             pprint("Now loading player check}'.").black()
             time.sleep(1.5)
         else:
             value = data[variable_to_check]
             print("Loaded game in debug mode")
     except KeyError:
-        print("The player '{variable_to_check}' does not exist.")
+        pprint(f"The player '{variable_to_check}' does not exist.").black()
         if debug == False:
             time.sleep(0.5)
         pprint("The player will now be created.").black()
@@ -60,9 +72,9 @@ def main():
         __________At Home________
         """
         if debug == False:
-            pprint("\nYou are at home. What do you want to do?:\n1. Go on a fishing trip.\n2. Go shopping.\n3. Go to bed (Exit the game)").yellow()
+            pprint("\nYou are at home. What do you want to do?:\n1. Go on a fishing trip.\n2. Go to the market.\n3. Go to bed (Exit the game)").yellow()
         else:
-            print("1. Fishing, 2. Shoppping, 3. exit")
+            print("1. Fishing, 2. Market, 3. Exit")
 
         if debug == True:
             json_file_path = 'players.json'
@@ -101,7 +113,7 @@ def main():
             """
                 ______Shopping____
             """
-            go_shopping(player_name)
+            go_to_market(player_name)
             time.sleep(2)
             continue
         if home_choice == "3":
@@ -172,25 +184,25 @@ class pprint:
         self.text = "m" + self.text + "\033[0m"
 
     def black(self):
-        print("\033[30" + self.text)
+        print(f"\033[30" + self.text)
 
     def red(self):
-        print("\033[31" + self.text)
+        print(f"\033[31" + self.text)
 
     def green(self):
-        print("\033[32" + self.text)
+        print(f"\033[32" + self.text)
 
     def yellow(self):
-        print("\033[33" + self.text)
+        print(f"\033[33" + self.text)
 
     def blue(self):
-        print("\033[34" + self.text)
+        print(f"\033[34" + self.text)
 
     def magenta(self):
-        print("\033[35" + self.text)
+        print(f"\033[35" + self.text)
 
     def cyan(self):
-        print("\033[36" + self.text)
+        print(f"\033[36" + self.text)
 
 
 class punderline(pprint):
@@ -234,7 +246,7 @@ def cast_rod(player_name):
     return
 
 
-def go_shopping(player_name):
+def go_to_market(player_name):
     print(f"The Market is closed for renovations! Come back later")
 
     return
