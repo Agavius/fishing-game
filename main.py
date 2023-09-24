@@ -331,8 +331,12 @@ if __name__ == "__main__":
 """).blue()
     while True:
         start_reply = input(
-            "Do you want to play (1) or enter the options (2)?")
+            "Do you want to play (1) or enter the options (2)? (3) or (E) to exit the game.")
         if start_reply == 1:
             main()
+            break
         if start_reply == 2:
             options()
+            continue
+        if start_reply == 3 or start_reply == "e" or start_reply == "E":
+            break
