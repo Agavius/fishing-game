@@ -337,6 +337,7 @@ if __name__ == "__main__":
             break
         if start_reply == "2":
             options()
+            clean_terminal()
             continue
         if start_reply == "3" or start_reply == "e" or start_reply == "E":
             break
