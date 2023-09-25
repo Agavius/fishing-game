@@ -208,7 +208,7 @@ class punderline(pprint):
 
 
 """
-__________________________________Choices Functions_______________________________________________________________
+__________________________________Fishing Functions_______________________________________________________________
 """
 
 
@@ -243,8 +243,13 @@ def cast_rod(player_name):
     return
 
 
+"""
+__________________________________Market Functions_______________________________________________________________
+"""
+
+
 def go_to_market(player_name):
-    print(f"The Market is closed for renovations! Come back later")
+    print(f"The Market is closed for renovations! Come back later.")
 
     return
 
