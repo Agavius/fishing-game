@@ -292,6 +292,23 @@ def change_stat(player_name, stat, change_by: int):
     return
 
 
+def update_level(player_name):
+    player_name = player_name
+    player_xp = get_stat(player_name, "XP")
+    player_level = get_stat(player_name, "Level")
+    next_player_level = player_level + 1
+    level_dict = {1: 0, 2: 100, 3: 250, 4: 500, 5: 1000,
+                  6: 1750, 7: 2750, 8: 4000, 9: 5500, 10: 7500, 11: 10000}
+    next_player_level_needed_xp = level_dict[next_player_level]
+    if player_xp >= next_player_level_needed_xp:
+        level_up_player()
+    return
+
+
+def level_up_player():
+    return
+
+
 """
 __________________________________Option Functions_______________________________________________________________
 """
