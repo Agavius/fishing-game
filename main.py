@@ -25,8 +25,8 @@ def main():
     else:
         player_name = "Debug"
 
-    json_file_path = 'players.json'
-    with open(json_file_path, 'r') as json_file:
+    json_file_path = "players.json"
+    with open(json_file_path, "r") as json_file:
         data = json.load(json_file)
 
     variable_to_check = player_name
@@ -58,13 +58,15 @@ def main():
         __________At Home________
         """
         if debug == False:
-            pprint("\nYou are at home. What do you want to do?:\n1. Go on a fishing trip.\n2. Go to the market.\n3. Go to bed (Exit the game)").yellow()
+            pprint(
+                "\nYou are at home. What do you want to do?:\n1. Go on a fishing trip.\n2. Go to the market.\n3. Go to bed (Exit the game)"
+            ).yellow()
         else:
             print("1. Fishing, 2. Market, 3. Exit")
 
         if debug == True:
-            json_file_path = 'players.json'
-            with open(json_file_path, 'r') as json_file:
+            json_file_path = "players.json"
+            with open(json_file_path, "r") as json_file:
                 data = json.load(json_file)
                 print("player data: ", data[player_name])
                 # print("removed item: ", remove_from_inventory(player_name))
@@ -82,7 +84,8 @@ def main():
                 """
                 if debug == False:
                     pprint(
-                        "\nYou are on a fishing trip\nOptions:\n1. Cast the rod\n2. Go home").yellow()
+                        "\nYou are on a fishing trip\nOptions:\n1. Cast the rod\n2. Go home"
+                    ).yellow()
                 else:
                     print("\nOptions: 1. Cast the rod, 2. Go home")
 
@@ -97,7 +100,7 @@ def main():
                     print("Invalid choice. Please select 1 or 2.")
         if home_choice == "2":
             """
-                ______Shopping____
+            ______Shopping____
             """
             go_to_market(player_name)
             time.sleep(2)
@@ -116,21 +119,28 @@ __________________________________Json Functions________________________________
 
 
 def load_players_data():
-    with open(players_json_path, 'r') as json_file:
+    with open(players_json_path, "r") as json_file:
         players_data = json.load(json_file)
     return players_data
 
 
 def save_new_player(player_name, players_data):
-    with open(players_json_path, 'w') as json_file:
-        new_player = {player_name:
-                      {
-                          "Stats": {"Level": 0, "XP": 0, "Strength": 1, "Stamina": 1, "Luck": 100},
-                          "Possessions": {"Moneys": 0, "Inventory": []},
-                          "Home": {},
-                          "Highscores": {"Biggest fish:": 0, "Most valuable fish": 0}
-                      }
-                      }
+    with open(players_json_path, "w") as json_file:
+        new_player = {
+            player_name: {
+                "Stats": {
+                    "Level": 0,
+                    "XP": 0,
+                    "Strength": 1,
+                    "Stamina": 1,
+                    "Agility": 1,
+                    "Luck": 100,
+                },
+                "Possessions": {"Moneys": 0, "Inventory": []},
+                "Home": {},
+                "Highscores": {"Biggest fish:": 0, "Most valuable fish": 0},
+            }
+        }
         players_data.update(new_player)
         json.dump(players_data, json_file, indent=4)
     return
@@ -138,7 +148,7 @@ def save_new_player(player_name, players_data):
 
 def dump_json(players_data):
     players_data = players_data
-    with open(players_json_path, 'w') as json_file:
+    with open(players_json_path, "w") as json_file:
         json.dump(players_data, json_file, indent=4)
     return
 
@@ -210,8 +220,9 @@ def cast_rod(player_name):
         time_to_catch = random.uniform(0.5, 2.0)
         time.sleep(time_to_catch)
 
-    catch_probability = (random.uniform(1.0, 10.0) *
-                         float((get_stat(player_name, stat="Luck") / 100)))
+    catch_probability = random.uniform(1.0, 10.0) * float(
+        (get_stat(player_name, stat="Luck") / 100)
+    )
 
     if catch_probability > 5.0:
         fish = random.choice(["bass", "trout", "catfish"])
@@ -219,15 +230,15 @@ def cast_rod(player_name):
         if debug == False:
             print(f"\nYou caught a {fish}! Good job, {player_name}!")
         else:
-            print(
-                f"You caught a {fish}, catch_probability: {catch_probability}")
+            print(f"You caught a {fish}, catch_probability: {catch_probability}")
 
     else:
         if debug == False:
             print("\nOh no, you didn't catch anything this time. Keep trying!")
         else:
             print(
-                f"\nYou didn't catch anything, with catch_probability: {catch_probability}")
+                f"\nYou didn't catch anything, with catch_probability: {catch_probability}"
+            )
 
     return
 
@@ -268,6 +279,10 @@ def remove_from_inventory(player_name, item=None):
     return success
 
 
+def change_moneys(player_name, amount):
+    return
+
+
 """
 __________________________________Stats Functions_______________________________________________________________
 """
@@ -297,15 +312,53 @@ def update_level(player_name):
     player_xp = get_stat(player_name, "XP")
     player_level = get_stat(player_name, "Level")
     next_player_level = player_level + 1
-    level_dict = {1: 0, 2: 100, 3: 250, 4: 500, 5: 1000,
-                  6: 1750, 7: 2750, 8: 4000, 9: 5500, 10: 7500, 11: 10000}
+    level_dict = {
+        1: 0,
+        2: 100,
+        3: 250,
+        4: 500,
+        5: 1000,
+        6: 1750,
+        7: 2750,
+        8: 4000,
+        9: 5500,
+        10: 7500,
+        11: 10000,
+    }
     next_player_level_needed_xp = level_dict[next_player_level]
     if player_xp >= next_player_level_needed_xp:
-        level_up_player()
+        level_up_player(player_name)
     return
 
 
-def level_up_player():
+def level_up_player(player_name):
+    player_name = player_name
+    change_stat(player_name, "Level", change_by=1)
+    new_player_level = get_stat(player_name, "Level")
+    pprint(
+        f"{player_name}, you leveled up! Congratulations. Your new Level is: {new_player_level}."
+    ).red()
+    pprint("Chose your reward.").red()
+    reward_one = random.randint(50, 250)
+    reward_two = random.randint(1, 5)
+    reward_three = random.choice(["Strength", "Stamina", "Agility"])
+    pprint(
+        f"(1): {reward_one} Moneys, (2): {reward_two} Luck-Points, (3) Increase {reward_three} by 2."
+    ).red()
+    reward_choice = input("What do you choose?: ")
+    while True:
+        if reward_choice == "1":
+            change_moneys(player_name, reward_one)
+            pprint("Increased Moneys").red()
+            break
+        if reward_choice == "2":
+            change_stat(player_name, "Luck", reward_two)
+            pprint("Increased Luck").red()
+            break
+        if reward_choice == "3":
+            change_stat(player_name, reward_three, 2)
+            pprint("Increased Stat").red()
+            break
     return
 
 
@@ -332,7 +385,8 @@ __________________________________Stats Functions_______________________________
 
 if __name__ == "__main__":
     clean_terminal()
-    pprint(r"""
+    pprint(
+        r"""
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~__        __   _                            _          _   _          ~
     ~\ \      / /__| | ___ ___  _ __ ___   ___  | |_ ___   | |_| |__   ___ ~
@@ -345,10 +399,12 @@ if __name__ == "__main__":
     ~|_|   |_|___/_| |_|_|_| |_|\__, |  \____|\__,_|_| |_| |_|\___(_)      ~
     ~                           |___/                                      ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-""").blue()
+"""
+    ).blue()
     while True:
         start_reply = input(
-            "Do you want to play (1) or enter the options (2)? (3) or (E) to exit the game.\n")
+            "Do you want to play (1) or enter the options (2)? (3) or (E) to exit the game.\n"
+        )
         if start_reply == "1":
             main()
             break
@@ -357,4 +413,6 @@ if __name__ == "__main__":
             clean_terminal()
             continue
         if start_reply == "3" or start_reply == "e" or start_reply == "E":
+            print("Thanks for playing! See you Soon.")
+            time.sleep(0.25)
             break
