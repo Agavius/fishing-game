@@ -1,6 +1,5 @@
-import random
-import json
-import time
+import random, json, time
+from fish_dict_data import fish_dict
 
 debug = False
 players_json_path = "players.json"
@@ -210,7 +209,7 @@ class punderline(pprint):
 """
 __________________________________Fishing Functions_______________________________________________________________
 """
-
+fish_dict = fish_dict #Just as a reminder
 
 def cast_rod(player_name):
     print(f"\n{player_name}, you are now fishing...")
