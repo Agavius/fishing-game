@@ -49,7 +49,11 @@ fish_dict = {
 }
 
 treasure_dict = {
-
+    "Old 50 Geldo Bill":    [100, 10, 25],
+    "Fossil":               [75, 25, 45],
+    "Gold Coin":            [50, 50, 80],
+    "Jewelry":              [25, 75, 100],
+    "Treasure Chest":       [1, 50, 1],
 }
 
 trash_dict = {
