@@ -34,7 +34,7 @@ def main():
         if debug == False:
             value = data[variable_to_check]
             pprint(f"The player '{variable_to_check}' already exists.").black()
-            pprint("Now loading player check}'.").black()
+            pprint("Now loading player check'.").black()
             time.sleep(1.5)
         else:
             value = data[variable_to_check]
@@ -224,7 +224,7 @@ def cast_rod(player_name):
     )
 
     if catch_probability > 5.0:
-        fish = random.choice(["bass", "trout", "catfish"])
+        fish = random.choice(list(fish_dict.keys()))
         add_to_inventory(player_name, fish)
         if debug == False:
             print(f"\nYou caught a {fish}! Good job, {player_name}!")
