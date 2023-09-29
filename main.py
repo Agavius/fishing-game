@@ -1,7 +1,7 @@
 import random, json, time
 from dict_data import fish_dict, treasure_dict, trash_dict, level_dict
 
-debug = False
+debug = True
 players_json_path = "players.json"
 
 
@@ -209,7 +209,20 @@ class punderline(pprint):
 """
 __________________________________Fishing Functions_______________________________________________________________
 """
-fish_dict = fish_dict #Just as a reminder
+def get_fish_dict_element(element = "weight" or "xp" or "worth"):
+    fish_dict_element = []
+    if element == "weight":
+        for i in range(len(fish_dict)):
+            fish_dict_element.append(list(fish_dict.values())[i][0])
+        return fish_dict_element
+    if element == "xp":
+        for i in range(len(fish_dict)):
+            fish_dict_element.append(list(fish_dict.values())[i][0])
+        return fish_dict_element
+    if element == "worth":
+        for i in range(len(fish_dict)):
+            fish_dict_element.append(list(fish_dict.values())[i][0])
+        return fish_dict_element
 
 def cast_rod(player_name):
     print(f"\n{player_name}, you are now fishing...")
@@ -222,10 +235,9 @@ def cast_rod(player_name):
     catch_probability = random.uniform(1.0, 10.0) * float(
         (get_stat(player_name, stat="Luck") / 100)
     )
-
     if catch_probability > 5.0:
-        fish = random.choice(list(fish_dict.keys()))
-        add_to_inventory(player_name, fish)
+        fish = random.choices(list(fish_dict.keys()), weights=get_fish_dict_element("weight"))
+        add_to_inventory(player_name, fish[0])
         if debug == False:
             print(f"\nYou caught a {fish}! Good job, {player_name}!")
         else:
