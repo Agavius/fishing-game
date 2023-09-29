@@ -207,7 +207,7 @@ class punderline(pprint):
 
 
 """
-__________________________________Fishing Functions_______________________________________________________________
+__________________________________Fish(ing) Functions_______________________________________________________________
 """
 def get_fish_dict_element(element = "weight" or "xp" or "worth"):
     fish_dict_element = []
@@ -294,8 +294,19 @@ def remove_from_inventory(player_name, item=None):
     dump_json(players_data)
     return success
 
+def get_moneys(player_nam):
+    player_name = player_name
+    players_data = load_players_data()
+    moneys = players_data[player_name]["Possessions"]["Moneys"]
+    return moneys
 
 def change_moneys(player_name, amount):
+    player_name = player_name
+    players_data = load_players_data()
+    moneys = players_data[player_name]["Possessions"]["Moneys"]
+    moneys = moneys + amount
+    players_data[player_name]["Possessions"]["Moneys"] = moneys
+    dump_json(players_data)
     return
 
 
@@ -373,17 +384,8 @@ __________________________________Option Functions______________________________
 def options():
     return
 
-
-def delete_palyer():
-    return
-
-
-def music_on():
-    return
-
-
 """
-__________________________________Stats Functions_______________________________________________________________
+__________________________________Main_______________________________________________________________
 """
 
 if __name__ == "__main__":
