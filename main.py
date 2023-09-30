@@ -253,14 +253,9 @@ def get_treasure_dict_element(element = "weight" or "xp" or "worth"):
         for i in range(len(treasure_dict)):
             treasure_dict_element.append(list(treasure_dict.values())[i][0])
         return treasure_dict_element
-    
-def get_fish_worth(item):
-    #TODO
-    None
 
-def get_fish_xp(item):
-    #TODO
-    None
+def get_fish_worth(item):
+    return fish_dict[item][2]
 
 def cast_rod(player_name):
     print(f"\n{player_name}, you are now fishing...")
@@ -272,29 +267,33 @@ def cast_rod(player_name):
         (get_stat(player_name, stat="Luck") / 100)
     )
     if catch_probability > 5.0:
-        catch_type = random.choices(["catch_type_fish","catch_type_trash","catch_type_treasure"], weights=[90,8,2])
+        catch_type = random.choices(["catch_type_fish","catch_type_trash","catch_type_treasure"], weights=[90,8,2])[0]
         if catch_type == "catch_type_fish":
-            fish = random.choices(list(fish_dict.keys()), weights=get_fish_dict_element("weight"))
+            fish = random.choices(list(fish_dict.keys()), weights=get_fish_dict_element("weight"))[0]
             add_to_inventory(player_name, fish[0])
             if debug == False:
                 print(f"\nYou caught a {fish}! Good job, {player_name}!")
             else:
                 print(f"You caught a {fish}, catch_probability: {catch_probability}")
+            xp_gain = fish_dict[fish][1]
         if catch_type == "catch_type_trash":
-            trash = random.choices(list(trash_dict.keys()), weights=get_trash_dict_element("weight"))
+            trash = random.choices(list(trash_dict.keys()), weights=get_trash_dict_element("weight"))[0]
             add_to_inventory(player_name, trash[0])
             if debug == False:
                 print(f"\nYou caught trash. Good job, {player_name} thanks for keeping the ocean clean! You cought {trash} btw.")
             else:
                 print(f"You caught trash: {trash}, catch_probability: {catch_probability}")
+            xp_gain = trash_dict[fish][1]
         if catch_type == "catch_type_treasure":
-            treasure = random.choices(list(treasure_dict.keys()), weights=get_treasure_dict_element("weight"))
+            treasure = random.choices(list(treasure_dict.keys()), weights=get_treasure_dict_element("weight"))[0]
             add_to_inventory(player_name, treasure[0])
             if debug == False:
                 pprint(f"\nYou caught {treasure}, a real treasure! Good job, {player_name}!").magenta()
             else:
                 print(f"You caught a {treasure}, catch_probability: {catch_probability}")
-        #TODO: Give XP to player
+            xp_gain = treasure_dict[fish][1]
+        change_stat(player_name, "XP", xp_gain)
+        update_level(player_name)
     else:
         if debug == False:
             print("\nOh no, you didn't catch anything this time. Keep trying!")
