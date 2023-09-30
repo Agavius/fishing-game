@@ -254,20 +254,13 @@ def get_treasure_dict_element(element = "weight" or "xp" or "worth"):
             treasure_dict_element.append(list(treasure_dict.values())[i][0])
         return treasure_dict_element
     
-def get_treasure_dict_element(element = "weight" or "xp" or "worth"):
-    fish_dict_element = []
-    if element == "weight":
-        for i in range(len(fish_dict)):
-            fish_dict_element.append(list(fish_dict.values())[i][0])
-        return fish_dict_element
-    if element == "xp":
-        for i in range(len(fish_dict)):
-            fish_dict_element.append(list(fish_dict.values())[i][0])
-        return fish_dict_element
-    if element == "worth":
-        for i in range(len(fish_dict)):
-            fish_dict_element.append(list(fish_dict.values())[i][0])
-        return fish_dict_element
+def get_fish_worth(item):
+    #TODO
+    None
+
+def get_fish_xp(item):
+    #TODO
+    None
 
 def cast_rod(player_name):
     print(f"\n{player_name}, you are now fishing...")
