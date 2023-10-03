@@ -310,10 +310,27 @@ __________________________________Market Functions______________________________
 
 
 def go_to_market(player_name):
-    print(f"The Market is closed for renovations! Come back later.")
-
+    print(f"Welcome to the market!.")
+    while True:
+        market_choices = input("What do you want to do at the market? (1): Sell all fish (2): Go home")
+        if market_choices == "1":
+            print("You go to sell all you fish.")
+            money_earned =  sell_all_fish(player_name)
+            print(f"You earned {money_earned} Moneys.")
+        if market_choices == "2":
+            break
+        continue
     return
+    
 
+def sell_all_fish(player_name):
+    money_earned = 0
+    players_data = load_players_data()
+    inventory = players_data[player_name]["Possessions"]["Inventory"]
+    for i in inventory:
+        if i in fish_dict:
+            remove_from_inventory(player_name, item=i)
+    return money_earned
 
 """
 __________________________________Inventory Functions_______________________________________________________________
