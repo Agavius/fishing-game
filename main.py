@@ -270,7 +270,7 @@ def cast_rod(player_name):
         catch_type = random.choices(["catch_type_fish","catch_type_trash","catch_type_treasure"], weights=[90,8,2])[0]
         if catch_type == "catch_type_fish":
             fish = random.choices(list(fish_dict.keys()), weights=get_fish_dict_element("weight"))[0]
-            add_to_inventory(player_name, fish[0])
+            add_to_inventory(player_name, fish)
             if debug == False:
                 print(f"\nYou caught a {fish}! Good job, {player_name}!")
             else:
@@ -278,7 +278,7 @@ def cast_rod(player_name):
             xp_gain = fish_dict[fish][1]
         if catch_type == "catch_type_trash":
             trash = random.choices(list(trash_dict.keys()), weights=get_trash_dict_element("weight"))[0]
-            add_to_inventory(player_name, trash[0])
+            add_to_inventory(player_name, trash)
             if debug == False:
                 print(f"\nYou caught trash. Good job, {player_name} thanks for keeping the ocean clean! You cought {trash} btw.")
             else:
@@ -286,7 +286,7 @@ def cast_rod(player_name):
             xp_gain = trash_dict[fish][1]
         if catch_type == "catch_type_treasure":
             treasure = random.choices(list(treasure_dict.keys()), weights=get_treasure_dict_element("weight"))[0]
-            add_to_inventory(player_name, treasure[0])
+            add_to_inventory(player_name, treasure)
             if debug == False:
                 pprint(f"\nYou caught {treasure}, a real treasure! Good job, {player_name}!").magenta()
             else:
@@ -310,9 +310,9 @@ __________________________________Market Functions______________________________
 
 
 def go_to_market(player_name):
-    print(f"Welcome to the market!.")
+    print(f"\nWelcome to the market!.")
     while True:
-        market_choices = input("What do you want to do at the market? (1): Sell all fish (2): Go home")
+        market_choices = input("What do you want to do at the market? (1): Sell all fish (2): Go home\n")
         if market_choices == "1":
             print("You go to sell all you fish.")
             money_earned =  sell_all_fish(player_name)
