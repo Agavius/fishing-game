@@ -283,7 +283,7 @@ def cast_rod(player_name):
                 print(f"\nYou caught trash. Good job, {player_name} thanks for keeping the ocean clean! You cought {trash} btw.")
             else:
                 print(f"You caught trash: {trash}, catch_probability: {catch_probability}")
-            xp_gain = trash_dict[fish][1]
+            xp_gain = trash_dict[trash][1]
         if catch_type == "catch_type_treasure":
             treasure = random.choices(list(treasure_dict.keys()), weights=get_treasure_dict_element("weight"))[0]
             add_to_inventory(player_name, treasure)
@@ -291,7 +291,7 @@ def cast_rod(player_name):
                 pprint(f"\nYou caught {treasure}, a real treasure! Good job, {player_name}!").magenta()
             else:
                 print(f"You caught a {treasure}, catch_probability: {catch_probability}")
-            xp_gain = treasure_dict[fish][1]
+            xp_gain = treasure_dict[treasure][1]
         change_stat(player_name, "XP", xp_gain)
         update_level(player_name)
     else:
@@ -329,6 +329,9 @@ def sell_all_fish(player_name):
     inventory = players_data[player_name]["Possessions"]["Inventory"]
     for i in inventory:
         if i in fish_dict:
+            moneys_got_from_fish = get_fish_worth(item=i)
+            change_moneys(player_name, amount=moneys_got_from_fish)
+            money_earned = money_earned + moneys_got_from_fish
             remove_from_inventory(player_name, item=i)
     return money_earned
 
